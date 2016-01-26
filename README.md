@@ -51,6 +51,14 @@ class Posts extends \Phalcon\Mvc\Model
 
 ### Controller ###
 
+There are 3 important methods: `get()`, `create()` and `getOrCreate()`:
+
+* `get()` uses `\Phalcon\Mvc\Model::findFirst()` to get a model instance from the database.
+* `create()` creates a model instance from dispatcher parameters but does not save it.
+* `getOrCreate()` uses `get()` and then `create()` if it can't find a record in the database.
+
+They all use the same parameters and work in the following way:
+
 ```php
 namespace Sid\Controllers;
 
