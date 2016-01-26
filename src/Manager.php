@@ -40,6 +40,49 @@ class Manager extends \Phalcon\Mvc\User\Plugin
     }
 
     /**
+     * @param string     $className
+     * @param array|null $acceptableAttributes
+     *
+     * @return \Phalcon\Mvc\ModelInterface
+     */
+    public function create($className, $acceptableAttributes = null)
+    {
+        if (!$acceptableAttributes) {
+            $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
+        }
+
+        $data = [];
+
+        foreach ($acceptableAttributes as $attribute) {
+            $data[$attribute] = $this->dispatcher->getParam($attribute);
+        }
+
+        $boundModel = new $className();
+
+        $boundModel->assign($data);
+
+        return $boundModel;
+    }
+
+    /**
+     * @param string     $className
+     * @param array|null $acceptableAttributes
+     *
+     * @return \Phalcon\Mvc\ModelInterface
+     */
+    public function getOrCreate($className, $acceptableAttributes = null)
+    {
+        $boundModel = $this->get($className, $acceptableAttributes);
+
+        if (!$boundModel) {
+            $boundModel = $this->create($className, $acceptableAttributes);
+        }
+
+        return $boundModel;
+    }
+
+
+    /**
      * @param string $className
      *
      * @return array
