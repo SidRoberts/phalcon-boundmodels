@@ -4,6 +4,21 @@ namespace Sid\Phalcon\BoundModels;
 
 class Manager extends \Phalcon\Mvc\User\Plugin
 {
+    protected $paramSource = self::DISPATCHER;
+
+    const DISPATCHER   = 1;
+    const REQUEST_GET  = 2;
+    const REQUEST_POST = 3;
+
+
+
+    public function setParamSource($paramSource)
+    {
+        $this->paramSource = $paramSource;
+    }
+
+
+
     /**
      * @param string     $className
      * @param array|null $acceptableAttributes
@@ -21,7 +36,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
         foreach ($acceptableAttributes as $attribute) {
             $conditions[]     = $attribute . " = :" . $attribute . ":";
-            $bind[$attribute] = $this->dispatcher->getParam($attribute);
+            $bind[$attribute] = $this->getParam($attribute);
         }
 
         $conditions = implode(" AND ", $conditions);
@@ -54,7 +69,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         $data = [];
 
         foreach ($acceptableAttributes as $attribute) {
-            $data[$attribute] = $this->dispatcher->getParam($attribute);
+            $data[$attribute] = $this->getParam($attribute);
         }
 
         $boundModel = new $className();
@@ -82,6 +97,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
     }
 
 
+
     /**
      * @param string $className
      *
@@ -91,11 +107,47 @@ class Manager extends \Phalcon\Mvc\User\Plugin
     {
         $model = new $className();
 
-        $dispatcherParams = array_keys($this->dispatcher->getParams());
+        $dispatcherParams = array_keys($this->getParams());
         $modelAttributes  = $this->modelsMetadata->getAttributes($model);
 
         $acceptableAttributes = array_intersect($dispatcherParams, $modelAttributes);
 
         return $acceptableAttributes;
+    }
+
+
+
+    protected function getParam($name)
+    {
+        switch ($this->paramSource) {
+            case self::DISPATCHER:
+                return $this->dispatcher->getParam($name);
+
+            case self::REQUEST_GET:
+                return $this->request->getQuery($name);
+
+            case self::REQUEST_POST:
+                return $this->request->getPost($name);
+
+            default:
+                throw new \Exception("Param source not found.");
+        }
+    }
+
+    protected function getParams()
+    {
+        switch ($this->paramSource) {
+            case self::DISPATCHER:
+                return $this->dispatcher->getParams();
+
+            case self::REQUEST_GET:
+                return $this->request->getQuery();
+
+            case self::REQUEST_POST:
+                return $this->request->getPost();
+
+            default:
+                throw new \Exception("Param source not found.");
+        }
     }
 }

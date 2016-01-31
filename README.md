@@ -23,6 +23,12 @@ Install using Composer:
 
 ### DI ###
 
+You can decide where the parameters come from using the `setParamSource()` method.
+
+* `$boundModels->setParamSource(\Sid\Phalcon\BoundModels\Manager::DISPATCHER);` - `dispatcher->getParam()` (default)
+* `$boundModels->setParamSource(\Sid\Phalcon\BoundModels\Manager::REQUEST_GET);` - `request->getQuery()`
+* `$boundModels->setParamSource(\Sid\Phalcon\BoundModels\Manager::REQUEST_POST);` - `request->getPost()`
+
 ```php
 $di->set(
 	"boundModels",
