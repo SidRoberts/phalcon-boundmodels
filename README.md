@@ -9,7 +9,7 @@ Automatically get models based on dispatcher parameters within the Phalcon frame
 
 Install using Composer:
 
-```
+```json
 {
 	"require": {
 		"sidroberts/phalcon-boundmodels": "dev-master"
