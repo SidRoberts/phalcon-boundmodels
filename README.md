@@ -29,6 +29,8 @@ You can decide where the parameters come from using the `setParamSource()` metho
 * `$boundModels->setParamSource(\Sid\Phalcon\BoundModels\Manager::REQUEST_GET);` - `request->getQuery()`
 * `$boundModels->setParamSource(\Sid\Phalcon\BoundModels\Manager::REQUEST_POST);` - `request->getPost()`
 
+Alternatively, you can set custom params using the `setCustomParamSource()` method (eg. `$boundModels->setCustomParamSource(['param1' => 'abc', 'param2' => 'def', 'param3' => 'ghi']);`).
+
 ```php
 $di->set(
 	"boundModels",

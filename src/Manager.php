@@ -5,6 +5,7 @@ namespace Sid\Phalcon\BoundModels;
 class Manager extends \Phalcon\Mvc\User\Plugin
 {
     protected $paramSource = self::DISPATCHER;
+    protected $customParams = null;
 
     const DISPATCHER   = 1;
     const REQUEST_GET  = 2;
@@ -18,6 +19,14 @@ class Manager extends \Phalcon\Mvc\User\Plugin
     public function setParamSource($paramSource)
     {
         $this->paramSource = $paramSource;
+    }
+
+    /**
+     * @param array $customParams
+     */
+    public function setCustomParamSource(array $customParams)
+    {
+        $this->customParams = $customParams;
     }
 
 
@@ -122,6 +131,10 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
     protected function getParam($name)
     {
+        if (is_array($this->customParams)) {
+            return $this->customParams[$name];
+        }
+
         switch ($this->paramSource) {
             case self::DISPATCHER:
                 return $this->dispatcher->getParam($name);
@@ -139,6 +152,10 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
     protected function getParams()
     {
+        if (is_array($this->customParams)) {
+            return $this->customParams;
+        }
+
         switch ($this->paramSource) {
             case self::DISPATCHER:
                 return $this->dispatcher->getParams();
