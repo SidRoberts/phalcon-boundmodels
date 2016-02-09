@@ -12,6 +12,9 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
 
 
+    /**
+     * @param integer $paramSource
+     */
     public function setParamSource($paramSource)
     {
         $this->paramSource = $paramSource;
