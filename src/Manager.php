@@ -43,23 +43,12 @@ class Manager extends \Phalcon\Mvc\User\Plugin
             $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
         }
 
-        $conditions = [];
-        $bind       = [];
-
-        foreach ($acceptableAttributes as $attribute) {
-            $conditions[]     = $attribute . " = :" . $attribute . ":";
-            $bind[$attribute] = $this->getParam($attribute);
-        }
-
-        $conditions = implode(" AND ", $conditions);
+        $parameters = $this->buildModelParameters($acceptableAttributes);
 
         $boundModel = call_user_func_array(
             [$className, "findFirst"],
             [
-                [
-                    "conditions" => $conditions,
-                    "bind"       => $bind
-                ]
+                $parameters
             ]
         );
 
@@ -106,6 +95,32 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         }
 
         return $boundModel;
+    }
+
+    /**
+     * @param string     $className
+     * @param array|null $acceptableAttributes
+     *
+     * @return boolean
+     */
+    public function exists($className, $acceptableAttributes = null)
+    {
+        if (!$acceptableAttributes) {
+            $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
+        }
+
+        $parameters = $this->buildModelParameters($acceptableAttributes);
+
+        $parameters["limit"] = 1;
+
+        $count = call_user_func_array(
+            [$className, "count"],
+            [
+                $parameters
+            ]
+        );
+
+        return ($count > 0);
     }
 
 
@@ -169,5 +184,30 @@ class Manager extends \Phalcon\Mvc\User\Plugin
             default:
                 throw new \Exception("Param source not found.");
         }
+    }
+
+
+
+    /**
+     * @param array $acceptableAttributes
+     *
+     * @return array
+     */
+    protected function buildModelParameters(array $attributes)
+    {
+        $conditions = [];
+        $bind       = [];
+
+        foreach ($attributes as $attribute) {
+            $conditions[]     = $attribute . " = :" . $attribute . ":";
+            $bind[$attribute] = $this->getParam($attribute);
+        }
+
+        $conditions = implode(" AND ", $conditions);
+
+        return [
+            "conditions" => $conditions,
+            "bind"       => $bind
+        ];
     }
 }
