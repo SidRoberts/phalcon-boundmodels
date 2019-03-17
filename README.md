@@ -48,7 +48,9 @@ $di->set(
 ```php
 namespace Sid\Models;
 
-class Posts extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+
+class Posts extends Model
 {
     public $categorySlug;
     public $postSlug;
@@ -70,10 +72,13 @@ They all use the same parameters and work in the following way:
 ```php
 namespace Sid\Controllers;
 
+use Phalcon\Mvc\Controller;
+use Sid\Models\Posts;
+
 /**
  * @RoutePrefix("/post")
  */
-class PostController extends \Phalcon\Mvc\Controller
+class PostController extends Controller
 {
     /**
      * @Route("/{categorySlug:[A-Za-z0-9\-]+}/{postSlug:[A-Za-z0-9\-]+}")
@@ -81,10 +86,10 @@ class PostController extends \Phalcon\Mvc\Controller
     public function postAction()
     {
         // Infer attributes
-        $post = $this->boundModels->get("Sid\\Models\\Posts");
+        $post = $this->boundModels->get(Posts::class);
 
         // Force only categorySlug to be used to find the model
-        $post = $this->boundModels->get("Sid\\Models\\Posts", ["categorySlug"]);
+        $post = $this->boundModels->get(Posts::class, ["categorySlug"]);
 
         // ...
     }

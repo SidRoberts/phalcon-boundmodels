@@ -2,7 +2,11 @@
 
 namespace Sid\Phalcon\BoundModels;
 
-class Manager extends \Phalcon\Mvc\User\Plugin
+use Exception;
+use Phalcon\Mvc\ModelInterface;
+use Phalcon\Mvc\User\Plugin;
+
+class Manager extends Plugin
 {
     /**
      * @var int
@@ -32,7 +36,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
 
     /**
-     * @return \Phalcon\Mvc\ModelInterface|false
+     * @return ModelInterface|false
      */
     public function get(string $className, array $acceptableAttributes = null)
     {
@@ -54,7 +58,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         return $boundModel;
     }
 
-    public function create(string $className, array $acceptableAttributes = null) : \Phalcon\Mvc\ModelInterface
+    public function create(string $className, array $acceptableAttributes = null) : ModelInterface
     {
         if (!$acceptableAttributes) {
             $acceptableAttributes = $this->getDefaultAcceptableAttributes(
@@ -75,7 +79,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         return $boundModel;
     }
 
-    public function getOrCreate(string $className, array $acceptableAttributes = null) : \Phalcon\Mvc\ModelInterface
+    public function getOrCreate(string $className, array $acceptableAttributes = null) : ModelInterface
     {
         $boundModel = $this->get($className, $acceptableAttributes);
 
@@ -144,7 +148,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
                 return $this->request->getPost($name);
 
             default:
-                throw new \Exception("Param source not found.");
+                throw new Exception("Param source not found.");
         }
     }
 
@@ -165,7 +169,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
                 return $this->request->getPost();
 
             default:
-                throw new \Exception("Param source not found.");
+                throw new Exception("Param source not found.");
         }
     }
 
