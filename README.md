@@ -11,9 +11,9 @@ Install using Composer:
 
 ```json
 {
-	"require": {
-		"sidroberts/phalcon-boundmodels": "dev-master"
-	}
+    "require": {
+        "sidroberts/phalcon-boundmodels": "dev-master"
+    }
 }
 ```
 
@@ -33,13 +33,13 @@ Alternatively, you can set custom params using the `setCustomParamSource()` meth
 
 ```php
 $di->set(
-	"boundModels",
-	function () {
-		$boundModels = new \Sid\Phalcon\BoundModels\Manager();
-		
-		return $boundModels;
-	},
-	true
+    "boundModels",
+    function () {
+        $boundModels = new \Sid\Phalcon\BoundModels\Manager();
+
+        return $boundModels;
+    },
+    true
 );
 ```
 
