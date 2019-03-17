@@ -37,7 +37,9 @@ class Manager extends \Phalcon\Mvc\User\Plugin
     public function get(string $className, array $acceptableAttributes = null)
     {
         if (!$acceptableAttributes) {
-            $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
+            $acceptableAttributes = $this->getDefaultAcceptableAttributes(
+                $className
+            );
         }
 
         $parameters = $this->buildModelParameters($acceptableAttributes);
@@ -55,7 +57,9 @@ class Manager extends \Phalcon\Mvc\User\Plugin
     public function create(string $className, array $acceptableAttributes = null) : \Phalcon\Mvc\ModelInterface
     {
         if (!$acceptableAttributes) {
-            $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
+            $acceptableAttributes = $this->getDefaultAcceptableAttributes(
+                $className
+            );
         }
 
         $data = [];
@@ -85,7 +89,9 @@ class Manager extends \Phalcon\Mvc\User\Plugin
     public function exists(string $className, array $acceptableAttributes = null) : bool
     {
         if (!$acceptableAttributes) {
-            $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
+            $acceptableAttributes = $this->getDefaultAcceptableAttributes(
+                $className
+            );
         }
 
         $parameters = $this->buildModelParameters($acceptableAttributes);
@@ -111,7 +117,10 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         $dispatcherParams = array_keys($this->getParams());
         $modelAttributes  = $this->modelsMetadata->getAttributes($model);
 
-        $acceptableAttributes = array_intersect($dispatcherParams, $modelAttributes);
+        $acceptableAttributes = array_intersect(
+            $dispatcherParams,
+            $modelAttributes
+        );
 
         return $acceptableAttributes;
     }
