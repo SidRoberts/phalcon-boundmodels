@@ -4,8 +4,14 @@ namespace Sid\Phalcon\BoundModels;
 
 class Manager extends \Phalcon\Mvc\User\Plugin
 {
+    /**
+     * @var int
+     */
     protected $paramSource = self::DISPATCHER;
+
     protected $customParams = null;
+
+
 
     const DISPATCHER   = 1;
     const REQUEST_GET  = 2;
@@ -13,17 +19,11 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
 
 
-    /**
-     * @param integer $paramSource
-     */
-    public function setParamSource($paramSource)
+    public function setParamSource(int $paramSource)
     {
         $this->paramSource = $paramSource;
     }
 
-    /**
-     * @param array $customParams
-     */
     public function setCustomParamSource(array $customParams)
     {
         $this->customParams = $customParams;
@@ -32,12 +32,9 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
 
     /**
-     * @param string     $className
-     * @param array|null $acceptableAttributes
-     *
      * @return \Phalcon\Mvc\ModelInterface|false
      */
-    public function get($className, $acceptableAttributes = null)
+    public function get(string $className, array $acceptableAttributes = null)
     {
         if (!$acceptableAttributes) {
             $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
@@ -55,13 +52,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         return $boundModel;
     }
 
-    /**
-     * @param string     $className
-     * @param array|null $acceptableAttributes
-     *
-     * @return \Phalcon\Mvc\ModelInterface
-     */
-    public function create($className, $acceptableAttributes = null)
+    public function create(string $className, array $acceptableAttributes = null) : \Phalcon\Mvc\ModelInterface
     {
         if (!$acceptableAttributes) {
             $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
@@ -80,13 +71,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         return $boundModel;
     }
 
-    /**
-     * @param string     $className
-     * @param array|null $acceptableAttributes
-     *
-     * @return \Phalcon\Mvc\ModelInterface
-     */
-    public function getOrCreate($className, $acceptableAttributes = null)
+    public function getOrCreate(string $className, array $acceptableAttributes = null) : \Phalcon\Mvc\ModelInterface
     {
         $boundModel = $this->get($className, $acceptableAttributes);
 
@@ -97,13 +82,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
         return $boundModel;
     }
 
-    /**
-     * @param string     $className
-     * @param array|null $acceptableAttributes
-     *
-     * @return boolean
-     */
-    public function exists($className, $acceptableAttributes = null)
+    public function exists(string $className, array $acceptableAttributes = null) : bool
     {
         if (!$acceptableAttributes) {
             $acceptableAttributes = $this->getDefaultAcceptableAttributes($className);
@@ -125,12 +104,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
 
 
-    /**
-     * @param string $className
-     *
-     * @return array
-     */
-    protected function getDefaultAcceptableAttributes($className)
+    protected function getDefaultAcceptableAttributes(string $className) : array
     {
         $model = new $className();
 
@@ -188,12 +162,7 @@ class Manager extends \Phalcon\Mvc\User\Plugin
 
 
 
-    /**
-     * @param array $acceptableAttributes
-     *
-     * @return array
-     */
-    protected function buildModelParameters(array $attributes)
+    protected function buildModelParameters(array $attributes) : array
     {
         $conditions = [];
         $bind       = [];
