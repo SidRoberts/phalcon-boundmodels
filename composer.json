@@ -14,9 +14,9 @@
 	],
 	
 	"support": {
-		"source": "https://www.GitHub.com/SidRoberts/Phalcon-BoundModels",
-		"issues": "https://www.GitHub.com/SidRoberts/Phalcon-BoundModels/issues",
-		"wiki":   "https://www.GitHub.com/SidRoberts/Phalcon-BoundModels/wiki"
+		"source": "https://github.com/SidRoberts/phalcon-boundmodels",
+		"issues": "https://github.com/SidRoberts/phalcon-boundmodels/issues",
+		"wiki":   "https://github.com/SidRoberts/phalcon-boundmodels/wiki"
 	},
 	
 	
