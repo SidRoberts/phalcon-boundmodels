@@ -86,10 +86,17 @@ class PostController extends Controller
     public function postAction()
     {
         // Infer attributes
-        $post = $this->boundModels->get(Posts::class);
+        $post = $this->boundModels->get(
+            Posts::class
+        );
 
         // Force only categorySlug to be used to find the model
-        $post = $this->boundModels->get(Posts::class, ["categorySlug"]);
+        $post = $this->boundModels->get(
+            Posts::class,
+            [
+                "categorySlug",
+            ]
+        );
 
         // ...
     }
