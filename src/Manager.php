@@ -148,7 +148,9 @@ class Manager extends Plugin
                 return $this->request->getPost($name);
 
             default:
-                throw new Exception("Param source not found.");
+                throw new Exception(
+                    "Param source not found."
+                );
         }
     }
 
@@ -169,7 +171,9 @@ class Manager extends Plugin
                 return $this->request->getPost();
 
             default:
-                throw new Exception("Param source not found.");
+                throw new Exception(
+                    "Param source not found."
+                );
         }
     }
 
