@@ -1,5 +1,4 @@
-Sid\Phalcon\BoundModels
-=======================
+# `Sid\Phalcon\BoundModels`
 
 Automatically get models based on dispatcher parameters within the Phalcon framework.
 
@@ -12,7 +11,7 @@ Automatically get models based on dispatcher parameters within the Phalcon frame
 
 
 
-## Installing ##
+## Installing
 
 Install using Composer:
 
