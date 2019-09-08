@@ -1,45 +1,45 @@
 {
-	"name":        "sidroberts/phalcon-boundmodels",
-	"description": "Automatically get models based on dispatcher parameters within the Phalcon framework.",
-	"type":        "library",
-	"license":     "MIT",
-	
-	"authors": [
-		{
-			"name":     "Sid Roberts",
-			"email":    "sid@sidroberts.co.uk",
-			"homepage": "https://sidroberts.co.uk",
-			"role":     "Developer"
-		}
-	],
-	
-	"support": {
-		"source": "https://github.com/SidRoberts/phalcon-boundmodels",
-		"issues": "https://github.com/SidRoberts/phalcon-boundmodels/issues",
-		"wiki":   "https://github.com/SidRoberts/phalcon-boundmodels/wiki"
-	},
-	
-	
-	
-	"require": {
-		"php": "~7.1",
-		
-		"ext-phalcon": "~3.0"
-	},
-	
-	"require-dev": {
-		"codeception/codeception": "~3.0",
+    "name":        "sidroberts/phalcon-boundmodels",
+    "description": "Automatically get models based on dispatcher parameters within the Phalcon framework.",
+    "type":        "library",
+    "license":     "MIT",
 
-		"phpunit/php-code-coverage": "~6.0",
+    "authors": [
+        {
+            "name":     "Sid Roberts",
+            "email":    "sid@sidroberts.co.uk",
+            "homepage": "https://sidroberts.co.uk",
+            "role":     "Developer"
+        }
+    ],
 
-		"codeclimate/php-test-reporter": "0.4.4"
-	},
-	
-	
-	
-	"autoload": {
-		"psr-4": {
-			"Sid\\Phalcon\\BoundModels\\": "src/"
-		}
-	}
+    "support": {
+        "source": "https://github.com/SidRoberts/phalcon-boundmodels",
+        "issues": "https://github.com/SidRoberts/phalcon-boundmodels/issues",
+        "wiki":   "https://github.com/SidRoberts/phalcon-boundmodels/wiki"
+    },
+
+
+
+    "require": {
+        "php": "~7.1",
+        
+        "ext-phalcon": "~3.0"
+    },
+
+    "require-dev": {
+        "codeception/codeception": "~3.0",
+
+        "phpunit/php-code-coverage": "~6.0",
+
+        "codeclimate/php-test-reporter": "0.4.4"
+    },
+
+
+
+    "autoload": {
+        "psr-4": {
+            "Sid\\Phalcon\\BoundModels\\": "src/"
+        }
+    }
 }
