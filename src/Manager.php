@@ -51,7 +51,7 @@ class Manager extends Plugin
         $boundModel = call_user_func_array(
             [$className, "findFirst"],
             [
-                $parameters
+                $parameters,
             ]
         );
 
@@ -105,7 +105,7 @@ class Manager extends Plugin
         $count = call_user_func_array(
             [$className, "count"],
             [
-                $parameters
+                $parameters,
             ]
         );
 
@@ -193,7 +193,7 @@ class Manager extends Plugin
 
         return [
             "conditions" => $conditions,
-            "bind"       => $bind
+            "bind"       => $bind,
         ];
     }
 }
