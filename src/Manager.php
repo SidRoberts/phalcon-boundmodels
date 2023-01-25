@@ -58,7 +58,7 @@ class Manager extends Plugin
         return $boundModel;
     }
 
-    public function create(string $className, array $acceptableAttributes = null) : ModelInterface
+    public function create(string $className, array $acceptableAttributes = null): ModelInterface
     {
         if (!$acceptableAttributes) {
             $acceptableAttributes = $this->getDefaultAcceptableAttributes(
@@ -79,7 +79,7 @@ class Manager extends Plugin
         return $boundModel;
     }
 
-    public function getOrCreate(string $className, array $acceptableAttributes = null) : ModelInterface
+    public function getOrCreate(string $className, array $acceptableAttributes = null): ModelInterface
     {
         $boundModel = $this->get($className, $acceptableAttributes);
 
@@ -90,7 +90,7 @@ class Manager extends Plugin
         return $boundModel;
     }
 
-    public function exists(string $className, array $acceptableAttributes = null) : bool
+    public function exists(string $className, array $acceptableAttributes = null): bool
     {
         if (!$acceptableAttributes) {
             $acceptableAttributes = $this->getDefaultAcceptableAttributes(
@@ -114,7 +114,7 @@ class Manager extends Plugin
 
 
 
-    protected function getDefaultAcceptableAttributes(string $className) : array
+    protected function getDefaultAcceptableAttributes(string $className): array
     {
         $model = new $className();
 
@@ -179,7 +179,7 @@ class Manager extends Plugin
 
 
 
-    protected function buildModelParameters(array $attributes) : array
+    protected function buildModelParameters(array $attributes): array
     {
         $conditions = [];
         $bind       = [];
