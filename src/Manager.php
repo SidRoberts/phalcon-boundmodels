@@ -17,9 +17,9 @@ class Manager extends Plugin
 
 
 
-    const DISPATCHER   = 1;
-    const REQUEST_GET  = 2;
-    const REQUEST_POST = 3;
+    public const DISPATCHER   = 1;
+    public const REQUEST_GET  = 2;
+    public const REQUEST_POST = 3;
 
 
 

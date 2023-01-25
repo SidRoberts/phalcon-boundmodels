@@ -22,14 +22,14 @@
 
 
     "require": {
-        "php": "~7.1",
+        "php": "~8.0",
         
-        "ext-phalcon": "~3.0"
+        "ext-phalcon": "~5.0"
     },
 
     "require-dev": {
-        "codeception/codeception": "~4.0",
-        "codeception/module-asserts": "~1.0"
+        "codeception/codeception": "~5.0",
+        "codeception/module-asserts": "~2.0"
     },
 
 
