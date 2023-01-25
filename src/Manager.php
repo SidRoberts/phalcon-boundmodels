@@ -8,12 +8,9 @@ use Phalcon\Mvc\User\Plugin;
 
 class Manager extends Plugin
 {
-    /**
-     * @var int
-     */
-    protected $paramSource = self::DISPATCHER;
+    protected int $paramSource = self::DISPATCHER;
 
-    protected $customParams = null;
+    protected ?array $customParams = null;
 
 
 
@@ -23,22 +20,19 @@ class Manager extends Plugin
 
 
 
-    public function setParamSource(int $paramSource)
+    public function setParamSource(int $paramSource): void
     {
         $this->paramSource = $paramSource;
     }
 
-    public function setCustomParamSource(array $customParams)
+    public function setCustomParamSource(array $customParams): void
     {
         $this->customParams = $customParams;
     }
 
 
 
-    /**
-     * @return ModelInterface|false
-     */
-    public function get(string $className, array $acceptableAttributes = null)
+    public function get(string $className, array $acceptableAttributes = null): ModelInterface|false
     {
         if (!$acceptableAttributes) {
             $acceptableAttributes = $this->getDefaultAcceptableAttributes(
