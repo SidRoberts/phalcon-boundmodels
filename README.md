@@ -25,7 +25,7 @@ Install using Composer:
 ```json
 {
     "require": {
-        "sidroberts/phalcon-boundmodels": "dev-master"
+        "sidroberts/phalcon-boundmodels": "dev-main"
     }
 }
 ```
